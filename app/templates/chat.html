@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="title">Room - [###].</h1>
+    <p class="info">
+        You are in the room! <a id="leave" href="#">Click</a>, if you want to leave one.
+    </p>
+    <hr>
+    <ul id="chat">
+        <li>
+            Test
+        </li>
+        <li>
+            Test
+        </li>
+        <li>
+            Test
+        </li>
+    </ul>
+    <div class="type">
+        <form>
+            <label for="message"></label>
+            <textarea id="message" name="message" cols="40" rows="3" placeholder="Your message" required></textarea>
+            <input id="send" type="reset" value="Send message">
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+{% endblock %}

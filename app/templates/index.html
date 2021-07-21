@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="title">Welcome!</h1>
+    <p class="info">
+        Please, select a name and a room in the relevant fields bellow to continue. 
+    </p>
+    <hr>
+    <form class="main_form" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form_inputs">
+            {{ form.name(placeholder='Enter a name') }}
+            {{ form.room(placeholder='Enter a room') }}
+        </div>
+        <div class="form_errors">
+            {% for error in form.name.errors %}
+            <span>{{ error }}</span><br>
+            {% endfor %}
+            {% for error in form.room.errors %}
+            <span>{{ error }}</span><br>
+            {% endfor %}
+        </div>
+        {{ form.submit() }}
+    </form>
+</div>
+
+{% endblock %}
