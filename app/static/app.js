@@ -46,6 +46,7 @@ const addMessage = (data) => {
     let objectMessage = document.createElement('li');
     objectMessage.innerHTML = data.message;
     chat.append(objectMessage);
+    chat.scrollTop = chat.scrollHeight;
 };
 
 const loadUsers = (data) => {

@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if title %}
-    <title>rchat - {{ title }}</title>
-    {% else %}
-    <title>rchat</title>
-    {% endif %}
+{% extends "bootstrap/base.html" %}
 
+{% block title %}
+    {% if title %}rchat - {{ title }}
+    {% else %}rchat{% endif %}
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    {% block content %}{% endblock %}
-</body>
-</html>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="center">
+            <div class="inner">
+                {% block app_content %}{% endblock app_content %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,29 +1,36 @@
 {% extends 'base.html' %}
 
-{% block content %}
-
-<div class="container">
-    <h1 class="title">Room - {{ session.get('room') }}.</h1>
-    <p class="info">
-        You are in the room! <a id="leave" href="#">Click</a>, if you want to leave one.
-    </p>
-    <hr>
-    <div class="content">
+{% block app_content %}
+<h1 class="title">Room - {{ session.get('room') }}.</h1>
+<p class="info">
+    You are in the room! <a id="leave" href="#">Click</a>, if you want to leave one.
+</p>
+<hr>
+<div class="content">
+    <div class="content-left">
+        <h3>Chat</h3>
         <ul id="chat">
         </ul>
+    </div>
+    <div class="content-right">
+        <h3>Users</h3>
         <ul id="users">
         </ul>
     </div>
-    <div class="type">
-        <form>
-            <label for="message"></label>
-            <textarea id="message" name="message" cols="40" rows="3" placeholder="Your message" required></textarea>
-            <input id="send" type="reset" value="Send message">
-        </form>
-    </div>
 </div>
+<div class="type">
+    <form>
+        <div class="form-group">
+            <label for="message"></label>
+            <textarea class="form-control" id="message" name="message" rows="3" placeholder="Your message" required></textarea>
+        </div>
+        <input id="send" class="btn btn-primary" type="reset" value="Send message">         
+    </form>
+</div>
+{% endblock %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js"></script>
-<script src="{{ url_for('static', filename='app.js') }}"></script>
-
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    {{ super() }}
 {% endblock %}

@@ -1,37 +1,36 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
+{% block app_content %}
+<h1 class="title">Welcome!</h1>
+<p class="info">
+    Please, select a name and a room in the relevant fields bellow to continue. 
+</p>
+<hr>
 
-<div class="container">
-    <h1 class="title">Welcome!</h1>
-    <p class="info">
-        Please, select a name and a room in the relevant fields bellow to continue. 
-    </p>
-    <hr>
-    <form class="main_form" method="POST" novalidate>
-        {{ form.hidden_tag() }}
-        <div class="form_inputs">
-            {{ form.name(placeholder='Enter a name') }}
-            {{ form.room(placeholder='Enter a room') }}
+<form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="form-row login">
+        <div class="col">
+            {{ wtf.form_field(form.name, placeholder='Enter your name') }}
         </div>
-        <div class="form_errors">
-            {% for error in form.name.errors %}
-            <span>{{ error }}</span><br>
-            {% endfor %}
-            {% for error in form.room.errors %}
-            <span>{{ error }}</span><br>
-            {% endfor %}
+        <div class="col">
+            {{ wtf.form_field(form.room, placeholder='Enter a room') }}
         </div>
-        {{ form.submit() }}
-    </form>
-    <hr>
-    <div class="rooms">
-        <table border="1">
-            <caption>Not empty rooms:</caption>
-            <tr>
-                <td>Room:</td>
-                <td>Online:</td>
-            </tr>
+        {{ wtf.form_field(form.submit, class='btn btn-primary') }}
+    </div>
+</form>
+
+<hr>
+<div class="rooms">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Room:</th>
+            <th scope="col">Online: </th>
+        </tr>
+        </thead>
+        <tbody>
             {% for room_name, room_users in users.items() %}
                 {% if room_users | length == 0 %}
                 {% else %}
@@ -41,8 +40,7 @@
                 </tr>
                 {% endif %}
             {% endfor %}
-        </table>
-    </div>
+        </tbody>
+    </table>
 </div>
-
 {% endblock %}
