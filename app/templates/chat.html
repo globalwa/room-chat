@@ -3,22 +3,17 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="title">Room - [###].</h1>
+    <h1 class="title">Room - {{ session.get('room') }}.</h1>
     <p class="info">
         You are in the room! <a id="leave" href="#">Click</a>, if you want to leave one.
     </p>
     <hr>
-    <ul id="chat">
-        <li>
-            Test
-        </li>
-        <li>
-            Test
-        </li>
-        <li>
-            Test
-        </li>
-    </ul>
+    <div class="content">
+        <ul id="chat">
+        </ul>
+        <ul id="users">
+        </ul>
+    </div>
     <div class="type">
         <form>
             <label for="message"></label>

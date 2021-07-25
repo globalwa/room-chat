@@ -1,6 +1,7 @@
 const socketio = io('http://' + document.domain + ':' + location.port + '/chat');
 
 const chat = document.querySelector('#chat');
+const users = document.querySelector('#users');
 const inputMessage = document.querySelector('#message');
 const sendMessage = document.querySelector('#send');
 const leaveLink = document.querySelector('#leave');
@@ -32,6 +33,10 @@ socketio.on('status', (data) => {
     addMessage(data);
 });
 
+socketio.on('user', (data) => {
+    loadUsers(data);
+});
+
 socketio.on('message', (data) => {
     addMessage(data);
 });
@@ -41,4 +46,14 @@ const addMessage = (data) => {
     let objectMessage = document.createElement('li');
     objectMessage.innerHTML = data.message;
     chat.append(objectMessage);
+};
+
+const loadUsers = (data) => {
+    users.innerHTML = '';
+
+    data.users.forEach(user => {
+        let objectUser = document.createElement('li');
+        objectUser.innerHTML = "User: " + user;
+        users.append(objectUser); 
+    });
 };

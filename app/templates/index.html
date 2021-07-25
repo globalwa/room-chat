@@ -24,6 +24,22 @@
         </div>
         {{ form.submit() }}
     </form>
+    <hr>
+    <div class="rooms">
+        <table border="1">
+            <caption>Not empty rooms:</caption>
+            <tr>
+                <td>Room:</td>
+                <td>Online:</td>
+            </tr>
+            {% for room_name, room_users in users.items() %}
+            <tr>
+                <td>{{ room_name }}</td>
+                <td>{{ room_users | length }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
 
 {% endblock %}

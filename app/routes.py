@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, session
 from app.forms import IndexForm
+from app.events import users
 from app import app
 
 
@@ -15,7 +16,7 @@ def index():
 
         return redirect(url_for('chat'))
 
-    return render_template('index.html', title='login', form=form)
+    return render_template('index.html', title='login', form=form, users=users)
 
 
 @app.route('/chat')

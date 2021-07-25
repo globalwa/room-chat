@@ -10,7 +10,7 @@ body {
 }
 
 .main_form {
-    margin: 150px 0px 0px;
+    margin: 100px 0px 100px;
     padding: 0px 200px;
 }
 
@@ -18,6 +18,24 @@ body {
     max-width: 830px;
     margin: 0px auto 0px auto;
     padding: 0px 15px;
+    height: 100%;
+}
+
+td {
+    padding-left: 5px;
+}
+
+.rooms {
+    margin: 30px;
+}
+
+.rooms table {
+    width: 75%;
+    margin: 0px auto;
+}
+
+.rooms caption {
+    margin-bottom: 20px;
 }
 
 .title {
@@ -45,16 +63,28 @@ body {
     margin-top: 15px;
 }
 
-#chat {
+.content {
     margin: 100px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#chat {
+    width: 60%;
     overflow: scroll;
     height: 200px;
     list-style: none;
 }
 
-#chat li {
+.content ul li {
     border-bottom: 1px solid black;
     padding: 5px 5px 5px 10px;
+}
+
+#users {
+    width: 30%;
+    overflow: scroll;
+    list-style: none;
 }
 
 .type {
