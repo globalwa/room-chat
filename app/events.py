@@ -6,6 +6,16 @@ from app import socketio
 
 users = defaultdict(list)
 
+def remove_user(users, room, name):
+    try:
+        users[room].remove(name)
+    except:
+        pass
+
+    if len(users[room]) == 0:
+        users.pop(room)
+
+
 class Chat(Namespace):
     def on_joined(self, data):
         room = session.get('room')
@@ -14,15 +24,11 @@ class Chat(Namespace):
         users[room].append(name)
 
         join_room(room)
-
         emit('user', {'users': users[room]}, to=room)
 
     def on_left(self, data):
         room = session.get('room')
-        name = session.get('name')
-
         leave_room(room)
-        emit('user', {'users': users[room]}, to=room)
 
 
     def on_message(self, data):
@@ -30,7 +36,6 @@ class Chat(Namespace):
         name = session.get('name')
 
         message = data['message']
-
         emit('message', {'message': f'{name} says: {message}'}, to=room)
 
     
@@ -38,7 +43,7 @@ class Chat(Namespace):
         room = session.get('room')
         name = session.get('name')
 
-        users[room].remove(name)
+        remove_user(users, room, name)
         emit('user', {'users': users[room]}, to=room)
 
 

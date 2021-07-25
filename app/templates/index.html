@@ -33,10 +33,13 @@
                 <td>Online:</td>
             </tr>
             {% for room_name, room_users in users.items() %}
-            <tr>
-                <td>{{ room_name }}</td>
-                <td>{{ room_users | length }}</td>
-            </tr>
+                {% if room_users | length == 0 %}
+                {% else %}
+                <tr>
+                    <td>{{ room_name }}</td>
+                    <td>{{ room_users | length }}</td>
+                </tr>
+                {% endif %}
             {% endfor %}
         </table>
     </div>
